@@ -1,0 +1,2 @@
+# Minimalist-Library
+用JavaWeb技术和Vue.js和Bootstrap创建的简单图书管理系统
