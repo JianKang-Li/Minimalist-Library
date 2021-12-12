@@ -1,0 +1,182 @@
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#that {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    height: 7vh;
+    align-items: center;
+    justify-content: space-between;
+    background-image: url("../img/background3.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 999;
+}
+
+h3 {
+    padding-left: 10px;
+}
+
+a {
+    color: lightgray;
+    text-decoration: none;
+    font-size: 20px;
+    padding-right: 10px;
+}
+.search-box {
+    padding-right: 10px;
+}
+
+.form-control {
+    width: 200px;
+    height: 43px;
+    display: inline-block;
+}
+.btn {
+    height: 43px;
+}
+
+#show {
+    width: 100%;
+    height: auto;
+}
+#button {
+    padding-top: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.btn:focus,
+.btn:active:focus,
+.form-control:focus,
+.form-control:active:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid lightgray;
+}
+#button > button {
+    margin-left: 70px;
+}
+#books {
+    color: black;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.show-div {
+    flex-direction: column;
+    margin: 20px;
+    width: 10vw;
+    height: 200px;
+    border-radius: 10px;
+    background-color: #f7f1e3;
+    box-shadow: 4px 4px 4px 4px lightgray;
+    transition: all 0.5s;
+}
+.show-div:hover {
+    cursor: pointer;
+    box-shadow: 8px 8px 10px 10px lightgray;
+}
+.item-banner {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    background: #aaa69d;
+    color: #fff;
+}
+.item-banner > p {
+    padding-top: 20px;
+}
+.item-author {
+    font-size: 14px;
+    text-indent: 30%;
+}
+.item-class {
+    padding-left: 20px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+}
+ul {
+    padding-left: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    background-image: url("../img/background3.png");
+    background-size: 100% 100%;
+}
+
+.footer {
+    padding-top: 15vh;
+    width: 100vw;
+    height: 10vh;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+p {
+    text-align: center;
+}
+.footer-p {
+    color: lightgray;
+}
+.footer button {
+    padding-left: 20px;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    font-size: 20px;
+    color: lightgray;
+    transition: all 0.5s;
+}
+.footer button:hover {
+    transform: scale(1.2, 1.2);
+}
+#how button {
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+}
+.modal-body p {
+    text-align: left;
+}
+#xh {
+    width: 100vw;
+    text-align: center;
+}
+#xh button {
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    transition: all 0.5s;
+}
+#xh button:hover {
+    animation: xh 0.5s infinite;
+}
+
+@keyframes xh {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}

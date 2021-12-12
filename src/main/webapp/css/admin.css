@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.shell {
+  position: absolute;
+  width: 90px;
+  height: 92vh;
+  display: flex;
+  z-index: 900;
+  flex-direction: column;
+  background-color: rgb(240, 244, 246);
+  border-radius: 10px;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.box {
+  display: block;
+  height: 15%;
+  width: 85%;
+  margin: 1vh;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.3s;
+  color: #000;
+}
+
+.box i {
+  font-size: 60px;
+  position: absolute;
+  margin: -18px 10px 6px 20px;
+}
+
+.box:nth-child(1)::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(55, 65, 81);
+  position: absolute;
+  bottom: -10px;
+}
+
+.box span {
+  position: relative;
+  top: 22px;
+  left: 80px;
+  font: 500 20px "";
+  opacity: 0;
+  transition: 0.1s;
+}
+
+.shell:hover {
+  width: 230px;
+}
+
+.box:hover {
+  background-color: rgb(209, 213, 219);
+}
+
+.shell:hover span {
+  opacity: 1;
+}
+
+.box:hover {
+  color: #fff;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
+}
+.body {
+  position: relative;
+}
+h3 {
+  position: relative;
+}
+
+.search {
+  float: right;
+  display: flex;
+  align-items: center;
+}
+.form-control-input {
+  width: 200px;
+  display: inline;
+  margin-right: 20px;
+}
+
+.form-control-input:focus {
+  box-shadow: none;
+  outline: none;
+}
+#book_footer,
+#user_footer,
+#checkjy_footer {
+  text-align: center;
+  border: 0;
+  background: rgba(255, 255, 255, 0);
+}
+.btn:focus,
+.btn:active:focus,
+.btn.active.focus {
+  outline: none;
+  box-shadow: none;
+}
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.8rem;
+  text-align: center;
+}
+#magabook1,
+#checkjy1,
+#dzmsg1,
+#addbook1 {
+  margin-left: 90px;
+  width: calc(100% - 90px);
+  height: 92vh;
+}
+#magabook1 td > button {
+  margin-left: 10px;
+}
+#showbook,
+#showjy,
+#showdz,
+#book {
+  width: 100%;
+}
+
+#book {
+  position: absolute;
+  width: 400px;
+  height: 85vh;
+  background-color: rgba(240, 240, 240, 0.5);
+  border: 1px solid #ffff;
+  border-radius: 10px;
+  top: 1vh;
+  left: 40vw;
+}
+#book > div {
+  margin-left: 20px;
+}
+
+#book textarea {
+  width: 80%;
+  height: 10vh;
+}
+#book input {
+  display: inline;
+  width: auto;
+}
+.btn-group-sm {
+  position: absolute;
+  left: 30%;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+#addbook1 {
+  background-image: url("../img/background2.png");
+  background-size: cover;
+}
+#magabook1,
+#checkjy1,
+#dzmsg1 {
+  background-image: url("../img/background3.png");
+  background-size: cover;
+}

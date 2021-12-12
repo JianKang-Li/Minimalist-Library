@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/user.css">
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <script src="./js/jquery.form.min.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <script src="./js/vue.js"></script>
+  <script src="./js/vue-router-3.5.2.js"></script>
+  <script src="./js/user.js"></script>
+  <title>个人中心</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <h3><a class="navbar-brand" href="index.html">极简图书</a></h3>
+      <div id="navbarSupportedContent">
+        <a href="./Invalidate">退出登录</a>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div class="shell">
+      <div class="box"><i><svg t="1637077496260" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                               xmlns="http://www.w3.org/2000/svg" p-id="3629" width="32" height="32">
+        <path
+                d="M634.65472 581.91872c92.89728-45.48608 157.02016-140.65664 157.02016-251.04384C791.67488 176.41472 666.46016 51.2 512 51.2c-154.46016 0-279.67488 125.21472-279.67488 279.67488 0 110.3872 64.12288 205.57824 157.02016 251.04384-154.15296 49.37728-270.25408 188.7232-282.46016 357.56032-1.2288 17.12128 11.63264 31.98976 28.75392 33.23904 17.24416 1.20832 31.98976-11.65312 33.23904-28.75392C181.80096 764.90752 332.53376 624.64 512 624.64s330.19904 140.26752 343.1424 319.32416c1.18784 16.36352 14.82752 28.83584 30.96576 28.83584 0.75776 0 1.51552-0.02048 2.27328-0.08192 17.12128-1.2288 29.98272-16.11776 28.75392-33.23904C904.92928 770.64192 788.82816 631.296 634.65472 581.91872zM294.48192 330.87488c0-120.13568 97.3824-217.51808 217.51808-217.51808 120.13568 0 217.51808 97.3824 217.51808 217.51808S632.13568 548.39296 512 548.39296C391.86432 548.39296 294.48192 451.01056 294.48192 330.87488z"
+                p-id="3630"></path>
+      </svg></i><span>{{username}}</span></div>
+      <router-link to="/check" tag="a" class="box"><i><svg t="1637077388869" class="icon" viewBox="0 0 1024 1024"
+                                                           version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2745" width="32" height="32">
+        <path
+                d="M596.48 332.288l-368.64-2.048c-14.336 0-25.6-11.776-25.6-25.6 0-14.336 11.776-25.6 25.6-25.6l368.64 2.048c14.336 0 25.6 11.776 25.6 25.6 0 14.336-11.776 25.6-25.6 25.6zM601.6 521.728l-368.64-2.048c-14.336 0-25.6-11.776-25.6-25.6 0-14.336 11.776-25.6 25.6-25.6l368.64 2.048c14.336 0 25.6 11.776 25.6 25.6 0 14.336-11.776 25.6-25.6 25.6zM471.04 711.168l-235.52-2.048c-14.336 0-25.6-11.776-25.6-25.6s11.776-25.6 25.6-25.6l235.52 2.048c14.336 0 25.6 11.776 25.6 25.6 0 14.336-11.776 25.6-25.6 25.6zM788.992 939.52c-78.848 0-143.36-64.512-143.36-143.36s64.512-143.36 143.36-143.36 143.36 64.512 143.36 143.36-64.512 143.36-143.36 143.36z m0-235.52c-50.688 0-92.16 41.472-92.16 92.16s41.472 92.16 92.16 92.16 92.16-41.472 92.16-92.16-41.472-92.16-92.16-92.16z"
+                p-id="2746"></path>
+        <path
+                d="M785.92 683.52c-14.336 0-25.6-11.264-25.6-25.6v-40.96c0-14.336 11.264-25.6 25.6-25.6s25.6 11.264 25.6 25.6v40.96c0 14.336-11.264 25.6-25.6 25.6zM691.712 726.016c-6.656 0-13.312-2.56-18.432-7.68l-29.696-30.72c-9.728-10.24-9.728-26.624 0.512-36.352 10.24-9.728 26.624-9.728 36.352 0.512l29.696 30.72c9.728 10.24 9.728 26.624-0.512 36.352-5.12 4.608-11.264 7.168-17.92 7.168zM652.8 821.76h-40.96c-14.336 0-25.6-11.264-25.6-25.6s11.264-25.6 25.6-25.6h40.96c14.336 0 25.6 11.264 25.6 25.6s-11.264 25.6-25.6 25.6zM663.552 948.736c-6.656 0-13.312-2.56-17.92-7.68-10.24-10.24-10.24-26.112 0-36.352l30.208-30.208c10.24-10.24 26.112-10.24 36.352 0s10.24 26.112 0 36.352l-30.208 30.208c-5.12 5.12-11.776 7.68-18.432 7.68zM791.04 1000.96c-14.336 0-25.6-11.264-25.6-25.6v-46.08c0-14.336 11.264-25.6 25.6-25.6s25.6 11.264 25.6 25.6v46.08c0 14.336-11.264 25.6-25.6 25.6zM916.48 947.712c-6.656 0-13.312-2.56-17.92-7.68l-30.208-30.208c-10.24-10.24-10.24-26.112 0-36.352s26.112-10.24 36.352 0l30.208 30.208c10.24 10.24 10.24 26.112 0 36.352-5.12 5.12-11.776 7.68-18.432 7.68zM970.24 821.76h-46.08c-14.336 0-25.6-11.264-25.6-25.6s11.264-25.6 25.6-25.6h46.08c14.336 0 25.6 11.264 25.6 25.6s-11.264 25.6-25.6 25.6zM884.736 724.992c-6.656 0-13.312-2.56-17.92-7.68-10.24-10.24-10.24-26.112 0-36.352l30.208-30.208c10.24-10.24 26.112-10.24 36.352 0s10.24 26.112 0 36.352l-30.208 30.208c-5.12 5.12-11.776 7.68-18.432 7.68zM317.44 1005.056H38.4c-14.336 0-25.6-11.264-25.6-25.6V35.84c0-14.336 11.264-25.6 25.6-25.6h733.696c14.336 0 25.6 11.264 25.6 25.6v276.992c0 14.336-11.264 25.6-25.6 25.6s-25.6-11.264-25.6-25.6V61.44H64v892.416H317.44c14.336 0 25.6 11.264 25.6 25.6s-11.264 25.6-25.6 25.6z"
+                p-id="2747"></path>
+      </svg></i><span>信息维护</span></router-link>
+      <router-link to="/msg" tag="a" class="box"><i><svg t="1637076073413" class="icon" viewBox="0 0 1024 1024"
+                                                         version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2720" width="32" height="32">
+        <path
+                d="M112.64 346.5216a20.48 20.48 0 0 1-20.48-20.48V225.28A112.64 112.64 0 0 1 204.8 112.64h100.9664a20.48 20.48 0 1 1 0 40.96H204.8A71.4752 71.4752 0 0 0 133.12 225.28v100.9664a20.48 20.48 0 0 1-20.48 20.2752zM305.5616 972.8H204.8A112.64 112.64 0 0 1 92.16 860.16v-104.0384a20.48 20.48 0 0 1 40.96 0V860.16a71.4752 71.4752 0 0 0 71.68 71.68h100.9664a20.48 20.48 0 1 1 0 40.96zM839.68 972.8h-105.8816a20.48 20.48 0 0 1 0-40.96H839.68a71.4752 71.4752 0 0 0 71.68-71.68v-104.0384a20.48 20.48 0 0 1 40.96 0V860.16a112.64 112.64 0 0 1-112.64 112.64zM931.84 346.5216a20.48 20.48 0 0 1-20.48-20.48V225.28A71.4752 71.4752 0 0 0 839.68 153.6h-104.0384a20.48 20.48 0 0 1 0-40.96H839.68a112.64 112.64 0 0 1 112.64 112.64v100.9664a20.48 20.48 0 0 1-20.48 20.2752zM911.36 563.2h-778.24a20.48 20.48 0 0 1 0-40.96h778.24a20.48 20.48 0 0 1 0 40.96z"
+                fill="#000" p-id="2721"></path>
+        <path
+                d="M286.72 307.2m80.0768 0l310.8864 0q80.0768 0 80.0768 80.0768l0 310.8864q0 80.0768-80.0768 80.0768l-310.8864 0q-80.0768 0-80.0768-80.0768l0-310.8864q0-80.0768 80.0768-80.0768Z"
+                fill="#000" p-id="2722"></path>
+      </svg></i><span>借书信息</span></router-link>
+      <router-link to="/book" tag="a" class="box"><i>
+        <svg t="1638346333863" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+             p-id="2576" width="32" height="32">
+          <path
+                  d="M747.7 288.2c0-17.6-14.4-32.1-32.1-32.1H306.4c-17.6 0-32.1 14.4-32.1 32.1 0 17.6 14.4 32.1 32.1 32.1h409.2c17.7 0 32.1-14.5 32.1-32.1zM306.4 448c-17.6 0-32.1 14.4-32.1 32.1 0 17.6 14.4 32.1 32.1 32.1h191.1c17.7 0 32.2-14.4 32.1-32.1 0-17.6-14.4-32.1-32.1-32.1H306.4zM766.6 776.8c-2.1-2.1-4.4-3.9-6.9-5.2 18.1-25.8 28.7-57.1 28.7-90.9 0-88.2-72.4-159.6-161.7-159.6S465 592.5 465 680.7s72.4 159.6 161.7 159.6c32.7 0 63.2-9.6 88.7-26.1 1.5 2.9 3.4 5.6 5.8 8l83.3 83.3c12.5 12.5 32.9 12.5 45.4 0s12.5-32.9 0-45.4l-83.3-83.3z m-139.9 0.6c-54.1 0-98-43.3-98-96.7s43.9-96.7 98-96.7 98 43.3 98 96.7c0 53.4-43.8 96.7-98 96.7z"
+                  fill="#4D4D4D" p-id="2577"></path>
+          <path
+                  d="M577.6 895.4H221.2c-35.2 0-64-28.8-64-64V192.8c0-35.2 28.8-64 64-64h547.3c35.2 0 64 28.8 64 64v318.4h0.3v0.1c0 17.7 14.4 32.1 32.2 32.1s32.2-14.4 32.2-32.1c0-1.2-0.1-2.3-0.2-3.5v-316c0-70.4-27.6-128-98-128H225c-70.4 0-128 57.6-128 128v639.8c0 70.4 57.6 128 128 128h352.2c17.8 0 32.2-14.4 32.2-32.1 0-17.6-14.2-31.9-31.8-32.1z"
+                  fill="#4D4D4D" p-id="2578"></path>
+          <path d="M832.7 639.3a32.2 32.1 0 1 0 64.4 0 32.2 32.1 0 1 0-64.4 0Z" fill="#4D4D4D" p-id="2579"></path>
+        </svg>
+      </i><span>图书查看</span></router-link>
+    </div>
+    <transition mode="out-in">
+      <router-view>
+
+      </router-view>
+    </transition>
+  </div>
+</div>
+
+<!--个人借阅信息-->
+<template id="msg">
+  <div id="msg1">
+    <h3>个人借阅信息</h3>
+    <div class="search">
+      <div><input class="form-control me-2 form-control-input" type="search" placeholder="Search book..."
+                  aria-label="Search" name="value" v-model="keywords" @keyup="flit=search();show()">
+        <button class="btn btn-primary" type="submit" @click="flit=search();show()">Search</button>
+      </div>
+    </div>
+    <table id="showjy" class="table table-sm table-primary">
+      <thead>
+      <th scope="col">编号</th>
+      <th scope="col">书籍名称</th>
+      <th scope="col">借阅时间</th>
+      <th scope="col">应还书时间</th>
+      <th scope="col">操作</th>
+      </thead>
+      <tbody>
+      <tr v-for="(lend,index) in bookmsg" v-bind:class="calculate(index)">
+        <td>{{index+1}}</td>
+        <td>{{lend.bname}}</td>
+        <td>{{lend.date}}</td>
+        <td>{{lend.backdate}}</td>
+        <td><button class="btn btn-primary" @click="backBook(index)">还书</button></td>
+      </tr>
+      <tr>
+        <td colspan="5" class="table-light" id="jy_footer">
+          <p v-if="!totalpage">你还没有借阅图书</p>
+          <p v-if="totalpage">{{Currentpage}}/{{totalpage}}页 {{number}}条数据</p>
+          <div class="btn-group" role="group" aria-label="Basic example" v-if="totalpage">
+            <button type="button" class="btn btn-primary" @click="currentpage('-')">上一页</button>
+            <button type="button" class="btn btn-primary" @click="currentpage('+')">下一页</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+
+<!--个人信息查看并修改-->
+<template id="check">
+  <div id="check1">
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeUser" data-bs-whatever="@mdo"
+            id="xg">修改</button>
+
+    <!--查看个人信息-->
+    <div id="msgshow">
+      <div class="mb-3">
+        <label for="uname" class="form-label">用户名:</span></label>
+        <span id="uname">{{user.uname}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="usex" class="form-label">性别:</label>
+        <span id="usex">{{user.usex}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="school" class="form-label">学校:</label>
+        <span id="school">{{user.school}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="signature" class="form-label">个性签名:</label>
+        <span id="signature">{{user.signature}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="uah" class="form-label">爱好:</label>
+        <span id="uah">{{user.uah}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="utel" class="form-label">联系电话:</label>
+        <span id="utel">{{user.utel}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="pswd" class="form-label">密码:</label>
+        <span id="pswd">{{user.pswd}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="uemail" class="form-label">邮箱:</label>
+        <span id="uemail">{{user.uemail}}</span>
+      </div>
+      <div class="mb-3">
+        <label for="about" class="form-label">简介:</label>
+        <span id="about">{{user.about}}</span>
+      </div>
+    </div>
+
+    <!--修改个人信息-->
+    <div class="modal fade" id="changeUser" tabindex="-1" aria-labelledby="changeUser" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">个人信息修改</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="changuser" action="./changeUser" method="post" onsubmit="return changeUser()">
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">用户名:<span id="tishi"></span></label>
+                <input type="text" class="form-control" id="recipient-name" v-bind:value="user.uname"
+                       onblur="checkconfirm()" name="uname">
+                <input type="hidden" name="olduname" v-bind:value="user.uname" id="olduname">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">性别:</label>
+                <input type="text" class="form-control" id="message-text" v-bind:value="user.usex" name="usex">
+              </div>
+              <div class="mb-3">
+                <label for="message-text1" class="col-form-label">学校:</label>
+                <input type="text" class="form-control" id="message-text1" v-bind:value="user.school" name="school">
+              </div>
+              <div class="mb-3">
+                <label for="message-text6" class="col-form-label">个性签名:</label>
+                <input type="text" class="form-control" id="message-text6" v-bind:value="user.signature"
+                       name="signature">
+              </div>
+              <div class="mb-3">
+                <label for="message-text2" class="col-form-label">爱好:</label>
+                <input type="text" class="form-control" id="message-text2" v-bind:value="user.uah" name="uah">
+              </div>
+              <div class="mb-3">
+                <label for="message-text3" class="col-form-label">联系电话:</label>
+                <input type="text" class="form-control" id="message-text3" v-bind:value="user.utel" name="utel">
+              </div>
+              <div class="mb-3">
+                <label for="message-text4" class="col-form-label">密码:</label>
+                <input type="text" class="form-control" id="message-text4" v-bind:value="user.pswd" name="pswd">
+              </div>
+              <div class="mb-3">
+                <label for="message-text5" class="col-form-label">邮箱:<span id="tishi1"></span></label>
+                <input type="text" class="form-control" id="message-text5" v-bind:value="user.uemail" name="uemail"
+                       onkeyup="checkemail()">
+              </div>
+              <div class="mb-3">
+                <label for="message-text7" class="col-form-label">简介:</label>
+                <textarea class="form-control" id="message-text7" v-bind:value="user.about" name="about"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">确定</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<!--查看图书-->
+<template id="book">
+  <div id="book1">
+    <div class="search">
+      <div><input class="form-control me-2 form-control-input" type="search" placeholder="Search book..."
+                  aria-label="Search" name="value" v-model="keywords" @keyup="Currentpage=1;get()">
+        <button class="btn btn-primary" type="submit" @click="Currentpage=1;get()">Search</button>
+      </div>
+    </div>
+    <table id="showbooks" class="table table-sm table-primary">
+      <thead>
+      <th scope="col">编号</th>
+      <th scope="col">书籍名称</th>
+      <th scope="col">书籍作者</th>
+      <th scope="col">书籍剩余数量</th>
+      <th scope="col">书籍位置</th>
+      <th scope="col">书籍分类</th>
+      <th scope="col">更多</th>
+      <th scope="col">操作</th>
+      </thead>
+      <tbody>
+      <tr v-for="(book,index) in list" class="table-light">
+        <td>{{index+1}}</td>
+        <td>{{book.bname}}</td>
+        <td>{{book.bauthor}}</td>
+        <td>{{book.bnumber}}</td>
+        <td>{{book.bposition}}</td>
+        <td>{{book.bclass}}</td>
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookmsg"
+                    data-bs-whatever="@mdo" @click="showbook(index)">详情</button></td>
+        <td><button class="btn btn-primary" @click="borrowBook(index)" v-if="book.bnumber">借书</button></td>
+      </tr>
+      <tr>
+        <td colspan="8" class="table-light" id="book_footer">
+          <p v-if="number<8">没有更多图书</p>
+          <p v-if="list[0]!=null">第{{Currentpage}}页 {{number}}条数据</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" @click="currentpage('-')">上一页</button>
+            <button type="button" class="btn btn-primary" @click="currentpage('+')">下一页</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!--展示图书信息-->
+    <div class="modal fade" id="bookmsg" tabindex="-1" aria-labelledby="bookmagLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookmsgLable">图书详情</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="bnamemsg" class="col-form-label">图书名:</label>
+                <span id="bnamemsg">{{book.bname}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bauthormsg" class="col-form-label">图书作者:</label>
+                <span id="bauthormsg">{{book.bauthor}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bnumbermsg" class="col-form-label">图书数量:</label>
+                <span id="bnumbermsg">{{book.bnumber}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bclassmsg" class="col-form-label">图书分类:</label>
+                <span id="bclassmsg">{{book.bclass}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpositionmsg" class="col-form-label">图书位置:</label>
+                <span id="bpositionmsg">{{book.bposition}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpricemsg" class="col-form-label">图书价格:</label>
+                <span id="bpricemsg">{{book.bprice}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpressmsg" class="col-form-label">图书出版商:</label>
+                <span id="bpressmsg">{{book.bpress}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpresstimemsg" class="col-form-label">图书出版时间:</label>
+                <span id="bpresstimemsg">{{book.bpresstime}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="baboutmsg" class="col-form-label">图书简介:</label>
+                <p id="baboutmsg">{{book.babout}}</p>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        username: null,
+      }
+    },
+    methods: {
+      get() {
+        var _this = this;
+        $.get("./getName?type=user", {}, function (data) {
+          _this.username = data;
+        })
+      }
+    },
+    router: routerObj,
+    created() {
+      this.get();
+    }
+  });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/vue.js"></script>
+    <title>极简图书</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+<main id="app">
+    <div id="that">
+        <div id="how">
+            <h3><button data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">极简图书</button></h3>
+        </div>
+        <div class="search-box">
+            <input type="text" class="form-control" id="book" placeholder="Try to search a book" v-model="keywords"
+                   @keyup="Currentpage=1;getBooks()">
+            <button class="btn btn-light" href="#" @click="Currentpage=1;getBooks()">
+                <svg t="1626943241389" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     p-id="2117" width="25" height="25">
+                    <path
+                            d="M1005.312 914.752l-198.528-198.464A448 448 0 1 0 0 448a448 448 0 0 0 716.288 358.784l198.4 198.4a64 64 0 1 0 90.624-90.432zM448 767.936A320 320 0 1 1 448 128a320 320 0 0 1 0 640z"
+                            fill="#e84118" p-id="2118">
+                    </path>
+                </svg>
+            </button>
+            <a href="login.html" v-if="flag">登录</a>
+            <a href="register.html" v-if="flag">注册</a>
+            <a :href="href" v-if="!flag" style="color:black">{{uname}}</a>
+        </div>
+    </div>
+
+    <div id="button">
+        <button class="btn btn-light" @click="Currentpage=1;keywords='';getBooks()">全部</button>
+        <button class="btn btn-light" @click="Currentpage=1;keywords='名著';getBooks()">名著</button>
+        <button class="btn btn-light" @click="Currentpage=1;keywords='传记';getBooks()">传记</button>
+        <button class="btn btn-light" @click="Currentpage=1;keywords='专业';getBooks()">专业</button>
+        <button class="btn btn-light" @click="Currentpage=1;keywords='小说';getBooks()">小说</button>
+    </div>
+    <div id="books">
+        <div class="show-div" v-for="(book,index) in books" data-bs-toggle="modal" data-bs-target="#exampleModal"
+             data-bs-whatever="@mdo" @click="showbook(index)">
+            <div class='item-banner'>
+                <p><b>{{book.bname}}</b></p>
+                <p class='item-author'>{{book.bauthor}}</p>
+            </div>
+            <div class='item-class'>{{book.bclass}}</div>
+        </div>
+    </div>
+    <div id="xh">
+        <button @click="currentpage('+')" v-if="number>=8">
+            <svg t="1639152098900" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 p-id="1342" width="48" height="48">
+                <path
+                        d="M839.58174 368.439145l-306.990475 336.793622c-5.852254 5.960629-13.619135 8.453256-21.349891 8.092005-7.658506 0.36125-15.389261-2.131377-21.27764-8.092005l-306.990475-336.793622c-10.945883-11.018133-10.945883-28.900021 0-40.026529a28.148621 28.148621 0 0 1 39.845904 0l288.422211 316.527481 288.494462-316.527481a28.148621 28.148621 0 0 1 39.845904 0c10.945883 11.126508 10.945883 29.008396 0 40.026529z"
+                        fill="#231815" p-id="1343"></path>
+            </svg>
+        </button>
+        <button v-if="number<8&&Currentpage!=1" @click="Currentpage=1;getBooks()">
+            <svg t="1639185784459" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 p-id="1698" width="48" height="48">
+                <path
+                        d="M845.433994 701.042263a28.148621 28.148621 0 0 1-39.845904 0l-288.422211-315.804981-288.494462 315.804981a28.148621 28.148621 0 0 1-39.845904 0c-10.945883-11.018133-10.945883-28.900021 0-39.954279l306.990475-336.107246c5.888379-5.852254 13.619135-8.381006 21.349891-8.019756 7.658506-0.36125 15.389261 2.131377 21.27764 8.019756L845.433994 661.087984c11.054258 11.054258 11.054258 28.936146 0 39.954279z"
+                        fill="#bfbfbf" p-id="1699"></path>
+            </svg>
+        </button>
+        <p v-if="number<8">我也是有底线的!</p>
+    </div>
+
+
+    <div class="footer">
+        <div class="h2">
+            <h2>Welcome To The Minimalist Library</h2>
+            <p><button data-bs-toggle="modal" data-bs-target="#fk" data-bs-whatever="@mdo">反馈</button><button
+                    data-bs-toggle="modal" data-bs-target="#addme" data-bs-whatever="@mdo">加入我们</button><button
+                    data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@mdo">帮助</button></p>
+            <p><button data-bs-toggle="modal" data-bs-target="#share" data-bs-whatever="@mdo">
+                <svg t="1639038651744" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                     p-id="2308" width="32" height="32">
+                    <path
+                            d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m210.5 612.4c-11.5 1.4-44.9-52.7-44.9-52.7 0 31.3-16.2 72.2-51.1 101.8 16.9 5.2 54.9 19.2 45.9 34.4-7.3 12.3-125.6 7.9-159.8 4-34.2 3.8-152.5 8.3-159.8-4-9.1-15.2 28.9-29.2 45.8-34.4-35-29.5-51.1-70.4-51.1-101.8 0 0-33.4 54.1-44.9 52.7-5.4-0.7-12.4-29.6 9.4-99.7 10.3-33 22-60.5 40.2-105.8-3.1-116.9 45.3-215 160.4-215 113.9 0 163.3 96.1 160.4 215 18.1 45.2 29.9 72.8 40.2 105.8 21.7 70.1 14.6 99.1 9.3 99.7z"
+                            p-id="2309" fill="#bfbfbf"></path>
+                </svg>
+            </button>
+                <button data-bs-toggle="modal" data-bs-target="#share" data-bs-whatever="@mdo">
+                    <svg t="1639038764709" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                         p-id="3317" width="32" height="32">
+                        <path
+                                d="M512 306.9c-113.5 0-205.1 91.6-205.1 205.1S398.5 717.1 512 717.1 717.1 625.5 717.1 512 625.5 306.9 512 306.9z m0 338.4c-73.4 0-133.3-59.9-133.3-133.3S438.6 378.7 512 378.7 645.3 438.6 645.3 512 585.4 645.3 512 645.3zM725.5 250.7c-26.5 0-47.9 21.4-47.9 47.9s21.4 47.9 47.9 47.9 47.9-21.3 47.9-47.9c-0.1-26.6-21.4-47.9-47.9-47.9z"
+                                p-id="3318" fill="#cdcdcd"></path>
+                        <path
+                                d="M911.8 512c0-55.2 0.5-109.9-2.6-165-3.1-64-17.7-120.8-64.5-167.6-46.9-46.9-103.6-61.4-167.6-64.5-55.2-3.1-109.9-2.6-165-2.6-55.2 0-109.9-0.5-165 2.6-64 3.1-120.8 17.7-167.6 64.5C132.6 226.3 118.1 283 115 347c-3.1 55.2-2.6 109.9-2.6 165s-0.5 109.9 2.6 165c3.1 64 17.7 120.8 64.5 167.6 46.9 46.9 103.6 61.4 167.6 64.5 55.2 3.1 109.9 2.6 165 2.6 55.2 0 109.9 0.5 165-2.6 64-3.1 120.8-17.7 167.6-64.5 46.9-46.9 61.4-103.6 64.5-167.6 3.2-55.1 2.6-109.8 2.6-165z m-88 235.8c-7.3 18.2-16.1 31.8-30.2 45.8-14.1 14.1-27.6 22.9-45.8 30.2C695.2 844.7 570.3 840 512 840c-58.3 0-183.3 4.7-235.9-16.1-18.2-7.3-31.8-16.1-45.8-30.2-14.1-14.1-22.9-27.6-30.2-45.8C179.3 695.2 184 570.3 184 512c0-58.3-4.7-183.3 16.1-235.9 7.3-18.2 16.1-31.8 30.2-45.8s27.6-22.9 45.8-30.2C328.7 179.3 453.7 184 512 184s183.3-4.7 235.9 16.1c18.2 7.3 31.8 16.1 45.8 30.2 14.1 14.1 22.9 27.6 30.2 45.8C844.7 328.7 840 453.7 840 512c0 58.3 4.7 183.2-16.2 235.8z"
+                                p-id="3319" fill="#cdcdcd">
+                        </path>
+                    </svg>
+                </button>
+                <button data-bs-toggle="modal" data-bs-target="#share" data-bs-whatever="@mdo">
+                    <svg t="1639038906132" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                         p-id="3742" width="32" height="32">
+                        <path
+                                d="M1024 512c0-282.763636-229.236364-512-512-512C229.236364 0 0 229.236364 0 512s229.236364 512 512 512C794.763636 1024 1024 794.763636 1024 512zM236.311273 693.946182c8.843636 1.117091 17.873455 1.722182 26.996364 1.722182 53.015273 0.093091 101.794909-19.037091 140.474182-51.153455-49.524364-1.163636-91.275636-36.165818-105.658182-84.200727 6.888727 1.442909 14.010182 2.280727 21.271273 2.327273 10.333091 0.046545 20.293818-1.349818 29.789091-4.049455-51.758545-11.450182-90.763636-60.555636-90.763636-119.063273 0-0.512 0-1.024 0-1.536 15.266909 9.216 32.674909 14.801455 51.246545 15.639273C279.365818 431.709091 259.397818 394.472727 259.397818 352.581818c0-22.155636 5.585455-42.821818 15.313455-60.509091 55.808 73.774545 139.170909 122.740364 233.146182 128.837818-1.954909-8.797091-2.932364-17.966545-2.932364-27.322182 0-66.141091 50.641455-118.923636 113.105455-117.899636 32.535273 0.558545 61.952 15.499636 82.571636 38.958545 25.786182-4.933818 49.989818-14.429091 71.819636-27.694545-8.424727 27.601455-26.391273 50.594909-49.757091 64.977455 22.900364-2.56 44.683636-8.610909 64.977455-17.780364-15.173818 23.598545-34.350545 44.218182-56.459636 60.695273 0.232727 5.12 0.325818 10.24 0.325818 15.36 0 157.044364-113.803636 338.152727-321.861818 338.059636C345.832727 748.311273 286.347636 728.296727 236.311273 693.946182z"
+                                p-id="3743" fill="#bfbfbf"></path>
+                    </svg>
+                </button>
+            </p>
+        </div>
+
+        <p>Copyright © 2021 极简图书. 保留所有权利。</p>
+    </div>
+
+    <!--图书详细信息-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">图书信息</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <p class="col-form-label">书名：{{book.bname}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">作者：{{book.bauthor}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">分类：{{book.bclass}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">位置：{{book.bposition}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">价格：{{book.bprice}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">出版商：{{book.bpress}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">出版时间：{{book.bpresstime}}</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="col-form-label">简介：{{book.babout}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--使用指南-->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">使用指南</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <b>关于游客：</b><br />
+                        1、如果您是第一次打开我们的网站，我们的主页为您呈现出了我们所有的藏书。当你点击图书后，可以看到关于这本书籍的全部信息，点击右上角“X”号或点击弹出窗以外可以关闭详细信息。<br />
+                        2、同时我们还为您准备了搜索功能，你可以通过在右上角搜索框中输入您需要的书籍，点击按钮或回车进行搜索。<br />
+                        3、搜索支持的信息包括：书名、作者名及分类名。<br />
+                        4、您也可以通过点击导航栏下方的按钮进行分类选择。<br />
+                        5、游客暂不支持在线借阅，如果需要请前往注册后，登录账号，在个人中心进行借阅<br />
+                        6、通过点击导航栏的<b>极简图书</b>可以快速到达顶部<br />
+                        7、当你下滑到最底部后点击顶部按钮会回到搜索状态<br />
+                    </p>
+                    <p>
+                        <b>关于登录用户：</b><br />
+                        1、网站主页面仍可以进行图书搜索与查看，但借阅仍需要到个人中心进行。<br />
+                        2、在个人中心可以进行个人信息修改，但需注意，<b>进行名称修改前应先确保无借阅图书</b>。<br />
+                        3、个人借阅信息页会将已到期的借阅标红，请注意借阅时间，及时还书。<br />
+                        4、在更个人中心的查阅书籍界面，也可以实现图书查找，也可以进行图书借阅。<br />
+                        5、在个人中心点击左上角图标可以返回主界面，可以享受与未登录用户相同的权益。<br />
+                        6、在主界面点击右上角个人名称可以快速返回个人中心。<br />
+                        7、所有图书借阅时间为<b>1个月</b>，如果需要请先还书后再借阅。<br />
+                    </p>
+                    <p>
+                        <b>关于管理员：</b><br />
+                        1、修改图书名字或删除图书前如果图书<b>有借阅记录会操作失败。</b><br />
+                        2、添加图书时请按照提示要求添加书籍信息，否则会添加失败。<br />
+                        3、用户借阅信息中会将逾期借阅信息标红。<br />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--反馈界面-->
+    <div class="modal fade" id="fk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fkLabel">反馈</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="class" class="col-form-label">问题类型:</label>
+                            <input type="text" class="form-control" id="class" name="fkclass">
+                        </div>
+                        <div class="mb-3">
+                            <label for="about" class="col-form-label">反馈描述:</label>
+                            <textarea id="about" class="form-control" name="fkabout"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary"
+                                    onclick="alert('感谢反馈!');window.location.reload(true)">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--加入我们-->
+    <div class="modal fade" id="addme" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="add">加入我们</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>联系邮箱：3104653373@qq.com</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--分享-->
+    <div class="modal fade" id="share" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sharetitle">支持</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>我的博客地址：https://www.cnblogs.com/fsgljk</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data() {
+            return {
+                book: {},
+                books: [],
+                Currentpage: 1,
+                keywords: '',
+                uname: '',
+                flag: 1,
+                href: '',
+                number: ''
+            }
+        },
+        methods: {
+            currentpage() {//计算当前页数
+                if (
+                    (this.number < 8)
+                ) {
+                    return;
+                }
+                else {
+                    this.Currentpage += 1;
+                    this.getBooks();
+                }
+            },
+            getBooks() {
+                var _this = this;
+                var page = _this.Currentpage;
+                var keyword = _this.keywords;
+                if (keyword.trim() == '') {
+                    $.getJSON("./getBooks?page=" + page, function (data) {
+                        if (page == 1) {
+                            _this.books = data;
+                        }
+                        else {
+                            for (let i = 0; i < data.length; i++) {
+                                _this.books.push(data[i]);
+                            }
+                        }
+                        _this.number = data.length;
+                    });
+                }
+                else {
+                    $.getJSON("./search?type=book&page=" + page + "&keyword=" + keyword, function (data) {
+                        if (page == 1) {
+                            _this.books = data;
+                        }
+                        else {
+                            for (let i = 0; i < data.length; i++) {
+                                _this.books.push(data[i]);
+                            }
+                        }
+                        _this.number = data.length;
+                    })
+                }
+
+            },
+            showbook(index) {
+                var _this = this;
+                _this.book = this.books[index]
+            },
+            getname(){
+                var _this = this;
+                $.get("./getName?type=user", function (data) {
+                    if (data !== 'null') {
+                        _this.uname = data;
+                        _this.href = './user.html'
+                        _this.flag = 0;
+                    }
+                })
+                $.get("./getName?type=admin", function (data) {
+                    if (data !== 'null') {
+                        _this.uname = data;
+                        _this.href = './admin.html'
+                        _this.flag = 0;
+                    }
+                })
+            }
+        },
+        created() {
+            this.getBooks();
+            this.getname();
+        }
+    })
+</script>
+</body>
+
+</html>

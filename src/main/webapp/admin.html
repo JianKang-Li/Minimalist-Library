@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/admin.css">
+  <script src="./js/jquery-3.6.0.min.js"></script>
+  <script src="./js/jquery.form.min.js"></script>
+  <script src="./js/bootstrap.js"></script>
+  <script src="./js/vue.js"></script>
+  <script src="./js/vue-resource-1.3.4.js"></script>
+  <script src="./js/vue-router-3.5.2.js"></script>
+  <script src="./js/admin.js"></script>
+  <title>管理中心</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+<div id="app">
+  <div class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <h3><a class="navbar-brand" href="index.html">极简图书</a></h3>
+      <div id="navbarSupportedContent">
+        <a href="./Invalidate">退出登录</a>
+      </div>
+    </div>
+  </div>
+  <!--主体部分-->
+  <div class="body">
+    <div class="shell">
+      <div class="box"><i><svg t="1637735469121" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                               xmlns="http://www.w3.org/2000/svg" p-id="3851" width="32" height="32">
+        <path
+                d="M512 590.75c-142.5 0-258.75-116.25-258.75-258.75s116.25-262.5 258.75-262.5 258.75 116.25 258.75 258.75-116.25 262.5-258.75 262.5zM512 144.5c-101.25 0-183.75 82.5-183.75 183.75s82.5 183.75 183.75 183.75 183.75-82.5 183.75-183.75-82.5-183.75-183.75-183.75z"
+                p-id="3852" fill="#1296db"></path>
+        <path
+                d="M170.75 950.75c-18.75 0-37.5-15-37.5-37.5 0-7.5 0-11.25 0-15 0-210 172.5-382.5 382.5-382.5 22.5 0 37.5 15 37.5 37.5s-15 37.5-37.5 37.5c-168.75 0-307.5 138.75-307.5 307.5v11.25c0 22.5-18.75 41.25-37.5 41.25v0z"
+                p-id="3853" fill="#1296db"></path>
+        <path
+                d="M853.25 947v0c-22.5 0-37.5-15-37.5-37.5v-11.25c0-168.75-138.75-307.5-307.5-307.5-22.5 0-37.5-15-37.5-37.5s15-37.5 37.5-37.5c210 0 382.5 172.5 382.5 382.5 0 3.75 0 7.5 0 11.25 0 22.5-15 37.5-37.5 37.5z"
+                p-id="3854" fill="#1296db"></path>
+      </svg></i><span>{{adminname}}</span></div>
+      <router-link to="/checkjy" tag="a" class="box"><i><svg t="1637735335839" class="icon" viewBox="0 0 1024 1024"
+                                                             version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2897" width="32" height="32">
+        <path
+                d="M239.502222 238.933333l378.993778 392.533334L951.409778 329.955556l-36.864 402.773333H228.352l50.517333 52.337778h683.235556l46.876444-507.335111L1012.622222 238.933333z m381.496889 319.715556L362.837333 291.271111h553.187556z"
+                fill="#1296db" p-id="2898"></path>
+        <path
+                d="M277.959111 367.274667H93.525333l50.403556 52.337777h184.661333l-50.631111-52.337777zM394.24 487.651556H11.377778l50.403555 52.337777h382.976l-50.517333-52.337777zM510.407111 608.028444H110.478222l50.403556 52.224H560.924444l-50.517333-52.224z"
+                fill="#1296db" p-id="2899"></path>
+      </svg></i><span>借阅情况</span></router-link>
+      <router-link to="/dzmsg" tag="a" class="box"><i><svg t="1637735303555" class="icon" viewBox="0 0 1024 1024"
+                                                           version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2681" width="32" height="32">
+        <path
+                d="M458.788711 576.146453c-45.595728-33.000763-81.427918-78.889397-102.126621-132.393593h-94.706331c-139.618612 0-252.680397 114.23341-252.680397 254.926011 0 46.083905 37.101449 83.575896 82.892449 83.575896h126.242563c42.764302-101.93135 131.710145-179.551487 240.378337-206.108314z"
+                fill="#1296db" p-id="2682"></path>
+        <path
+                d="M410.849733 344.848207a229.052632 227.002288 90 1 0 454.004577 0 229.052632 227.002288 90 1 0-454.004577 0Z"
+                fill="#1296db" p-id="2683"></path>
+        <path
+                d="M322.294432 394.642258c6.736842 0 13.376049-0.390542 19.91762-0.976354-3.61251-18.453089-5.467582-37.394355-5.467582-56.921434 0-108.375286 58.093059-203.081617 144.500381-254.242563C445.803204 32.512586 387.80778 0 322.294432 0 214.309687 0 126.73074 88.360031 126.73074 197.321129s87.578947 197.321129 195.563692 197.321129zM714.398169 917.772693c0-22.749047 25.385202-41.1045 56.530893-41.104501h243.795576c-3.514874-20.503432-9.080092-40.323417-16.598017-59.264683H770.929062c-31.243326 0-56.530892-18.453089-56.530893-41.104501 0-22.749047 25.385202-41.1045 56.530893-41.1045h177.891686c-53.797101-63.755912-133.955759-104.176964-223.292144-104.176964H567.847445c-162.074752 0-293.29672 132.686499-293.29672 295.932876 0 53.601831 43.057208 97.04958 96.170862 97.04958h552.030511c41.983219 0 77.717773-27.142639 90.800915-65.122807H770.929062c-31.243326 0-56.530892-18.453089-56.530893-41.1045z"
+                fill="#1296db" p-id="2684"></path>
+      </svg></i><span>读者信息</span></router-link>
+      <router-link to="/magabook" tag="a" class="box"><i><svg t="1637735269861" class="icon" viewBox="0 0 1024 1024"
+                                                              version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2393" width="32" height="32">
+        <path
+                d="M583.9 109.2H331.3c-17.4 0-31.5 14.2-31.5 31.5v636.6c0 17.4 14.1 31.5 31.5 31.5h252.6c17.3 0 31.5-14.1 31.5-31.5V140.7c0-17.4-14.2-31.5-31.5-31.5z m1 668.1c0 0.6-0.4 1.1-1 1.1H331.3c-0.6 0-1-0.5-1-1.1V140.7c0-0.6 0.5-1 1-1h252.6c0.5 0 1 0.5 1 1v636.6zM828.2 265H668c-17.4 0-31.5 14.1-31.5 31.5v480.7c0 17.4 14.1 31.5 31.5 31.5h160.2c17.4 0 31.6-14.1 31.6-31.5V296.6c0.1-17.4-14.2-31.6-31.6-31.6z m1.1 512.3c0 0.6-0.5 1.1-1.1 1.1H668c-0.6 0-1.1-0.5-1.1-1.1V296.6c0-0.6 0.5-1.1 1.1-1.1h160.2c0.6 0 1.1 0.5 1.1 1.1v480.7zM244.4 254.2h-48.7c-17.4 0-31.5 14.2-31.5 31.5v491.6c0 17.4 14.2 31.5 31.5 31.5h48.7c17.4 0 31.5-14.1 31.5-31.5V285.7c0-17.4-14.1-31.5-31.5-31.5z m1 523.1c0 0.6-0.5 1.1-1.1 1.1h-48.7c-0.5 0-1-0.5-1-1.1V285.7c0-0.6 0.4-1 1-1h48.7c0.6 0 1.1 0.5 1.1 1v491.6zM536 705.5H379.3c-11.9 0-21.4 6.8-21.4 15.3 0 8.4 9.5 15.3 21.4 15.3H536c11.7 0 21.2-6.8 21.2-15.3s-9.5-15.3-21.2-15.3z m0-58H379.3c-11.9 0-21.4 6.8-21.4 15.3 0 8.4 9.5 15.3 21.4 15.3H536c11.7 0 21.2-6.8 21.2-15.3s-9.5-15.3-21.2-15.3z m268.5 61H692.1c-8.5 0-15.3 6.8-15.3 15.2 0 8.4 6.8 15.3 15.3 15.3h112.3c8.4 0 15.2-6.8 15.2-15.3 0.1-8.3-6.7-15.2-15.1-15.2zM379.6 294.4h157.5c16.8 0 30.5-13.7 30.5-30.5v-55.2c0-16.8-13.7-30.5-30.5-30.5H379.6c-16.8 0-30.5 13.7-30.5 30.5v55.2c0 16.9 13.7 30.5 30.5 30.5z m0-85.7h157.5v55.2H379.6v-55.2z m335.3 212.1h66.7c16.8 0 30.5-13.7 30.5-30.5v-43.8c0-16.8-13.7-30.5-30.5-30.5h-66.7c-16.8 0-30.5 13.7-30.5 30.5v43.8c0 16.9 13.7 30.5 30.5 30.5z m0-74.3h66.7v43.8h-66.7v-43.8z"
+                p-id="2394" fill="#1296db"></path>
+      </svg></i><span>管理书籍</span></router-link>
+      <router-link to="/addbook" tag="a" class="box"><i><svg t="1638433066294" class="icon" viewBox="0 0 1024 1024"
+                                                             version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1250" width="32" height="32">
+        <path
+                d="M128 64a64 64 0 0 0-64 64v768a64 64 0 0 0 64 64h768a64 64 0 0 0 64-64V128a64 64 0 0 0-64-64H128z m0-64h768a128 128 0 0 1 128 128v768a128 128 0 0 1-128 128H128a128 128 0 0 1-128-128V128a128 128 0 0 1 128-128z"
+                fill="#1296db" p-id="1251"></path>
+        <path d="M704 480a32 32 0 1 1 0 64H320a32 32 0 0 1 0-64h384z" fill="#1296db" p-id="1252"></path>
+        <path d="M544 704a32 32 0 1 1-64 0V320a32 32 0 0 1 64 0v384z" fill="#1296db" p-id="1253"></path>
+      </svg></i><span>添加书籍</span></router-link>
+    </div>
+    <!--信息展示-->
+    <transition mode="out-in">
+      <router-view>
+
+      </router-view>
+    </transition>
+  </div>
+</div>
+
+
+<!--查看借阅信息-->
+<template id="checkjy">
+  <div id="checkjy1">
+    <div class="search">
+      <div><input class="form-control me-2 form-control-input" type="search" placeholder="Search..."
+                  aria-label="Search" name="value" v-model="keywords" @keyup="Currentpage=1;get()">
+        <button class="btn btn-primary" type="submit" @click="Currentpage=1;get()">Search...</button>
+      </div>
+    </div>
+    <table id="showjy" class="table table-sm table-primary">
+      <thead>
+      <th scope="col">编号</th>
+      <th scope="col">读者姓名</th>
+      <th scope="col">书籍名称</th>
+      <th scope="col">借阅时间</th>
+      <th scope="col">应还书时间</th>
+      </thead>
+      <tbody>
+      <tr v-for="(jy,index) in list" v-bind:class="calculate(index)">
+        <td>{{index+1}}</td>
+        <td>{{jy.uname}}</td>
+        <td>{{jy.bname}}</td>
+        <td>{{jy.date}}</td>
+        <td>{{jy.backdate}}</td>
+      </tr>
+      <tr>
+        <td colspan="5" class="table-light" id="checkjy_footer">
+          <p v-if="number<8">没有更多借阅信息</p>
+          <p v-if="list[0]!=null">第{{Currentpage}}页 {{number}}条数据</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" @click="currentpage('-')">上一页</button>
+            <button type="button" class="btn btn-primary" @click="currentpage('+')">下一页</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+
+<!--查看读者信息-->
+<template id="dzmsg">
+  <div id="dzmsg1">
+    <div class="search">
+      <div><input class="form-control me-2 form-control-input" type="search" placeholder="Search User..."
+                  aria-label="Search" name="value" v-model="keywords" @keyup="Currentpage=1;get()">
+        <button class="btn btn-primary" type="submit" @click="Currentpage=1;get()">Search</button>
+      </div>
+    </div>
+    <table id="showdz" class="table table-sm table-primary">
+      <thead>
+      <th scope="col">编号</th>
+      <th scope="col">读者姓名</th>
+      <th scope="col">读者电话</th>
+      <th scope="col">读者邮箱</th>
+      <th scope="col">读者学校</th>
+      <th scope="col">更多</th>
+      </thead>
+      <tbody>
+      <tr v-for="(user,index) in list" class="table-light">
+        <td>{{index+1}}</td>
+        <td>{{user.uname}}</td>
+        <td>{{user.utel}}</td>
+        <td>{{user.uemail}}</td>
+        <td>{{user.school}}</td>
+        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usermsg"
+                    data-bs-whatever="@mdo" @click="showdz(index)">详情</button></td>
+      </tr>
+      <tr>
+        <td colspan="6" class="table-light" id="user_footer">
+          <p v-if="number<8">没有更多注册用户</p>
+          <p v-if="list[0]!=null">第{{Currentpage}}页 {{number}}条数据</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" @click="currentpage('-')">上一页</button>
+            <button type="button" class="btn btn-primary" @click="currentpage('+')">下一页</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="modal fade" id="usermsg" tabindex="-1" aria-labelledby="usermagLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="usermsgLable">图书详情</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="usernamemsg" class="col-form-label">用户名:</label>
+                <span id="usernamemsg">{{user.uname}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="usersexmsg" class="col-form-label">性别:</label>
+                <span id="usersexmsg">{{user.usex}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="usertelmsg" class="col-form-label">电话:</label>
+                <span id="usertelmsg">{{user.utel}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="useremailmsg" class="col-form-label">邮箱:</label>
+                <span id="useremailmsg">{{user.uemail}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="userschoolmsg" class="col-form-label">学校:</label>
+                <p id="userschoolmsg">{{user.school}}</p>
+              </div>
+              <div class="mb-3">
+                <label for="userahmsg" class="col-form-label">爱好:</label>
+                <span id="userahmsg">{{user.uah}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="useraboutmsg" class="col-form-label">简介:</label>
+                <span id="useraboutmsg">{{user.about}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="usersignaturemsg" class="col-form-label">签名:</label>
+                <span id="usersignaturemsg">{{user.signature}}</span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</template>
+
+
+<!--管理图书信息-->
+<template id="magabook">
+  <div id="magabook1">
+    <div class="search">
+      <div><input class="form-control me-2 form-control-input" type="search" placeholder="Search book..."
+                  aria-label="Search" name="value" v-model="keywords" @keyup="Currentpage=1;get()">
+        <button class="btn btn-primary" type="submit" @click="Currentpage=1;get()">Search</button>
+      </div>
+    </div>
+    <table id="showbook" class="table table-sm table-primary">
+      <thead>
+      <th scope="col">编号</th>
+      <th scope="col">书籍名称</th>
+      <th scope="col">书籍作者</th>
+      <th scope="col">书籍剩余数量</th>
+      <th scope="col">书籍位置</th>
+      <th scope="col">书籍分类</th>
+      <th scope="col">操作</th>
+      <th scope="col">删除</th>
+      </thead>
+      <tbody>
+      <tr v-for="(book,index) in list" class="table-light">
+        <td>{{index+1}}</td>
+        <td>{{book.bname}}</td>
+        <td>{{book.bauthor}}</td>
+        <td>{{book.bnumber}}</td>
+        <td>{{book.bposition}}</td>
+        <td>{{book.bclass}}</td>
+        <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo" @click="showbook(index)">修改</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookmsg"
+                  data-bs-whatever="@mdo" @click="showbook(index)">详情</button>
+        </td>
+        <td><button class="btn btn-danger" @click="deleteBook(index)">删除</button></td>
+      </tr>
+      <tr>
+        <td colspan="8" class="table-light" id="book_footer">
+          <p v-if="number<8">没有更多图书</p>
+          <p v-if="list[0]!=null">第{{Currentpage}}页 {{number}}条数据</p>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" @click="currentpage('-')">上一页</button>
+            <button type="button" class="btn btn-primary" @click="currentpage('+')">下一页</button>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!--展示图书信息-->
+    <div class="modal fade" id="bookmsg" tabindex="-1" aria-labelledby="bookmagLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bookmsgLable">图书详情</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="bnamemsg" class="col-form-label">图书名:</label>
+                <span id="bnamemsg">{{book.bname}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bauthormsg" class="col-form-label">图书作者:</label>
+                <span id="bauthormsg">{{book.bauthor}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bnumbermsg" class="col-form-label">图书数量:</label>
+                <span id="bnumbermsg">{{book.bnumber}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bclassmsg" class="col-form-label">图书分类:</label>
+                <span id="bclassmsg">{{book.bclass}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpositionmsg" class="col-form-label">图书位置:</label>
+                <span id="bpositionmsg">{{book.bposition}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpricemsg" class="col-form-label">图书价格:</label>
+                <span id="bpricemsg">{{book.bprice}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpressmsg" class="col-form-label">图书出版商:</label>
+                <span id="bpressmsg">{{book.bpress}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="bpresstimemsg" class="col-form-label">图书出版时间:</label>
+                <span id="bpresstimemsg">{{book.bpresstime}}</span>
+              </div>
+              <div class="mb-3">
+                <label for="baboutmsg" class="col-form-label">图书简介:</label>
+                <p id="baboutmsg">{{book.babout}}</p>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--修改图书信息-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">图书信息修改</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="changebook" action="./changeBook" method="post" onsubmit="return changeBook()">
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">图书名字:<span id="tishi1"></span></label>
+                <input type="text" class="form-control" id="recipient-name" v-bind:value="book.bname"
+                       onblur="checkBook1()" name="bname">
+                <!--用于存储旧的图书名-->
+                <input type="hidden" name="oldbname" v-bind:value="book.bname" id="oldbname">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">图书作者:</label>
+                <input type="text" class="form-control" id="message-text" v-bind:value="book.bauthor" name="bauthor">
+              </div>
+              <div class="mb-3">
+                <label for="message-text1" class="col-form-label">图书数量:</label>
+                <input type="text" class="form-control" id="message-text1" v-bind:value="book.bnumber" name="bnumber">
+              </div>
+              <div class="mb-3">
+                <label for="message-text2" class="col-form-label">图书分类:</label>
+                <input type="text" class="form-control" id="message-text2" v-bind:value="book.bclass" name="bclass">
+              </div>
+              <div class="mb-3">
+                <label for="message-text3" class="col-form-label">图书位置:</label>
+                <input type="text" class="form-control" id="message-text3" v-bind:value="book.bposition"
+                       name="bposition">
+              </div>
+              <div class="mb-3">
+                <label for="message-text4" class="col-form-label">图书价格:</label>
+                <input type="text" class="form-control" id="message-text4" v-bind:value="book.bprice" name="bprice">
+              </div>
+              <div class="mb-3">
+                <label for="message-text5" class="col-form-label">图书出版商:</label>
+                <input type="text" class="form-control" id="message-text5" v-bind:value="book.bpress" name="bpress">
+              </div>
+              <div class="mb-3">
+                <label for="message-text6" class="col-form-label">图书出版时间:</label>
+                <input type="text" class="form-control" id="message-text6" v-bind:value="book.bpresstime"
+                       name="bpresstime">
+              </div>
+              <div class="mb-3">
+                <label for="message-text7" class="col-form-label">图书简介:</label>
+                <textarea class="form-control" id="message-text7" v-bind:value="book.babout" name="babout"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">确定</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--添加图书-->
+<template id="addbook">
+  <div id="addbook1">
+    <form method="post" action="./addBook" class="form-register" id="book" onsubmit="return addBook()">
+      <div class="mb-3">
+        <label for="bname" class="form-label">图书名:</label>
+        <input type="text" name="bname" id="bname" class="form-control" onblur="checkBook()" required>
+        <span id="tishi"></span>
+      </div>
+      <div class="mb-3">
+        <label for="bauthor" class="form-label">图书作者:</label>
+        <input type="text" name="bauthor" id="bauthor" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="bnumber" class="form-label">图书数量:</label>
+        <input type="text" name="bnumber" id="bnumber" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="bclass" class="col-form-label">图书分类:</label>
+        <input type="text" class="form-control" id="bclass" name="bclass" placeholder="分类1、分类2、...." required>
+      </div>
+      <div class="mb-3">
+        <label for="bposition" class="col-form-label">图书位置:</label>
+        <input type="text" class="form-control" id="bposition" name="bposition" placeholder="楼号-书架号-书架层号" required>
+      </div>
+      <div class="mb-3">
+        <label for="bprice" class="col-form-label">图书价格:</label>
+        <input type="text" class="form-control" id="bprice" name="bprice">
+      </div>
+      <div class="mb-3">
+        <label for="bpress" class="col-form-label">图书出版商:</label>
+        <input type="text" class="form-control" id="bpress" name="bpress" required>
+      </div>
+      <div class="mb-3">
+        <label for="bpresstime" class="col-form-label">图书出版时间:</label>
+        <input type="text" class="form-control" id="bpresstime" name="bpresstime" placeholder="xxxx(年)-xx(月)-xx(日)">
+      </div>
+      <div class="mb-3">
+        <label for="babout" class="col-form-label">图书简介:</label>
+        <textarea class="form-control" id="babout" name="babout"></textarea>
+      </div>
+      <div class="btn-group-sm">
+        <button type="submit" class="btn btn-primary">添加</button>
+        <button type="reset" class="btn btn-primary">重置</button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data() {
+      return {
+        adminname: null,
+        flag: ''
+      }
+    },
+    methods: {
+      get() {
+        var _this = this;
+        $.get("./getName?type=admin", {}, function (data) {
+          _this.adminname = data;
+        })
+      }
+    },
+    router: routerObj,
+    created() {
+      this.get()
+    }
+  });
+
+</script>
+
+</body>
+
+</html>
