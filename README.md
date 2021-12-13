@@ -1,8 +1,6 @@
 # Minimalist-Library
 用JavaWeb技术和Vue.js和Bootstrap创建的简单图书管理系统
 <br/>
-海报
-![极简图书](https://user-images.githubusercontent.com/72432476/145855322-b5aad2b0-eb89-41c2-97e8-6b198028df8e.png)
 运行截图
 1 主界面截图
 ![主界面截图](https://user-images.githubusercontent.com/72432476/145856400-f95b3f06-3414-4255-8c25-b304c5680e1e.png)
@@ -33,5 +31,7 @@
 
 
 本系统背景图来自[Pexels](https://www.pexels.com/zh-cn/)及[White Background Image](https://coolbackgrounds.io/white-background/)<br/>
+海报
+![极简图书](https://user-images.githubusercontent.com/72432476/145855322-b5aad2b0-eb89-41c2-97e8-6b198028df8e.png)
 使用框架为Vue.js和bootstrap框架<br/>
 还使用了Jquery.js和Jquery.form.js的方法
