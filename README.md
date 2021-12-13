@@ -32,5 +32,5 @@
 ![管理员添加图书界面](https://user-images.githubusercontent.com/72432476/145857752-d40f266d-aa68-444e-b972-5bd5ab70cb6e.png)
 
 
-本系统背景图来自![Pexels](https://www.pexels.com/zh-cn/)及![White Background Image](https://coolbackgrounds.io/white-background/)
+本系统背景图来自[Pexels](https://www.pexels.com/zh-cn/)及[White Background Image](https://coolbackgrounds.io/white-background/)
 使用框架为Vue.js和bootstrap框架
