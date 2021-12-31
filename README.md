@@ -31,7 +31,5 @@
 
 
 本系统背景图来自[Pexels](https://www.pexels.com/zh-cn/)及[White Background Image](https://coolbackgrounds.io/white-background/)<br/>
-海报
-![极简图书](https://user-images.githubusercontent.com/72432476/145855322-b5aad2b0-eb89-41c2-97e8-6b198028df8e.png)
 使用框架为Vue.js和bootstrap框架<br/>
 还使用了Jquery.js和Jquery.form.js的方法
